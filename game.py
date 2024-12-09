@@ -69,8 +69,8 @@ class ResourceManager:
         water_multiplier = season["water_multiplier"]
 
         food_collected = int(self.workforce["food"] * random.randint(5, 15) * food_multiplier)
-        wood_collected = int(self.workforce["wood"] * random.randint(3, 10) * wood_multiplier)
-        water_collected = int(self.workforce["water"] * random.randint(4, 12) * water_multiplier)
+        wood_collected = int(self.workforce["wood"] * random.randint(5, 15) * wood_multiplier)
+        water_collected = int(self.workforce["water"] * random.randint(5, 15) * water_multiplier)
 
         self.food += food_collected
         self.wood += wood_collected
@@ -78,15 +78,13 @@ class ResourceManager:
         print(f"\n🛠️ Resources collected during {season['name']}! Food: +{food_collected}, Wood: +{wood_collected}, Water: +{water_collected}")
 
     def expand_settlement(self):
-        """Expand the settlement if resources allow."""
         base_cost = 50  # Base cost for food and wood
         scaling_factor = 1.5  # Increase cost with settlement size
 
         # Calculate the total cost
         food_cost = int(base_cost * (self.settlement_size ** scaling_factor))
         wood_cost = int(base_cost * (self.settlement_size ** scaling_factor))
-
-        print(f"\n🏗️ Expansion Opportunity: Costs - Food: {food_cost}, Wood: {wood_cost}")
+        
         if self.food >= food_cost and self.wood >= wood_cost:
             self.food -= food_cost
             self.wood -= wood_cost
@@ -99,7 +97,7 @@ class ResourceManager:
             print(f"🎉 Settlement expanded to size {self.settlement_size}!")
             print(f"👨‍👩‍👧 Population increased by {new_population}. Total: {self.population}")
             print(f"✨ Bonus Morality: +5")
-            self.morality += 5  # Morality bonus for successful expansion
+            self.morality += 25  # Morality bonus for successful expansion
         else:
             print(f"❌ Not enough resources to expand. You need:")
             print(f"   Food: {food_cost}, Wood: {wood_cost}")
